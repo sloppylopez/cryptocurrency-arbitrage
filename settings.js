@@ -89,32 +89,32 @@ let markets = [
 
   },
 
-  {
-    marketName: 'btc38',
-    URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
-    toBTCURL: false,
-    pairURL : '',
-    last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
-      return new Promise(function (res, rej) {
-        let priceOfBTC = data.btc.ticker.last;
-        try {
-          for (let key in data) {
-            let coinName = key.toUpperCase();
-            let price = data[key]['ticker'].last;
-            if (!coin_prices[coinName]) coin_prices[coinName] = {};
-
-            coin_prices[coinName]["btc38"] = data[key]['ticker'].last / priceOfBTC;
-          }
-          res(coin_prices);
-        }
-
-        catch (err) {
-          console.log(err);
-          rej(err)
-        }
-      })
-    }
-  },
+  // {
+  //   marketName: 'btc38',
+  //   URL: 'http://api.btc38.com/v1/ticker.php?c=all&mk_type=cny',
+  //   toBTCURL: false,
+  //   pairURL : '',
+  //   last: function (data, coin_prices, toBTCURL) { //Where to find the last price of coin in JSON data
+  //     return new Promise(function (res, rej) {
+  //       let priceOfBTC = data.btc.ticker.last;
+  //       try {
+  //         for (let key in data) {
+  //           let coinName = key.toUpperCase();
+  //           let price = data[key]['ticker'].last;
+  //           if (!coin_prices[coinName]) coin_prices[coinName] = {};
+  //
+  //           coin_prices[coinName]["btc38"] = data[key]['ticker'].last / priceOfBTC;
+  //         }
+  //         res(coin_prices);
+  //       }
+  //
+  //       catch (err) {
+  //         console.log(err);
+  //         rej(err)
+  //       }
+  //     })
+  //   }
+  // },
 
   {
     marketName: 'jubi',
@@ -183,7 +183,7 @@ let markets = [
         try {
           for (let obj of data.Data) {
             if(obj["Label"].includes('/BTC')) {
-              let coinName = obj["Label"].replace("/BTC", '').replace("FUEL", 'FC2').replace("BTG", 'BITGEM');
+              let coinName = obj["Label"].replace("/BTC", '').replace("FUEL", 'FUEL (FUELCOIN)').replace("BTG", 'BTG (BITGEM)').replace("CMT", 'CMT (COMET)');
               if (!coin_prices[coinName]) coin_prices[coinName] = {};
               coin_prices[coinName].cryptopia = obj.LastPrice;
             }
