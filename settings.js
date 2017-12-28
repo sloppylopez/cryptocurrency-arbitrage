@@ -156,7 +156,7 @@ let markets = [
         try {
           for (var obj in data) {
             if(obj.includes('BTC_')&&obj!=="BTC_EMC2") {
-              let coinName = obj.replace("BTC_", '');
+              let coinName = obj.replace("BTC_", '').replace("BTM", 'BITMARK');//ON CRYPTOPIA IS BYTOM
               if (!coin_prices[coinName]) coin_prices[coinName] = {};
               coin_prices[coinName].poloniex = data[obj].last;
             }
@@ -183,7 +183,7 @@ let markets = [
         try {
           for (let obj of data.Data) {
             if(obj["Label"].includes('/BTC')) {
-              let coinName = obj["Label"].replace("/BTC", '');
+              let coinName = obj["Label"].replace("/BTC", '').replace("FUEL", 'FC2').replace("BTG", 'BITGEM');
               if (!coin_prices[coinName]) coin_prices[coinName] = {};
               coin_prices[coinName].cryptopia = obj.LastPrice;
             }
